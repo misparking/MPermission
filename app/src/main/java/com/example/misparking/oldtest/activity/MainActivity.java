@@ -38,7 +38,7 @@ public class MainActivity extends MPermissionsActivity {
      * @param view
      */
     public void onClick_phone(View view) {
-        requestPermission(new String[]{Manifest.permission.CALL_PHONE}, Constants.PERMISSION_CALL_PHONE);
+        requestPermission(new String[]{Manifest.permission.RECORD_AUDIO}, Constants.PERMISSION_CALL_PHONE);
     }
 
     /**

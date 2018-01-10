@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClick_phone"
-        android:text="打电话" />
+        android:text="录音" />
 
     <Button
         android:id="@+id/button2"

@@ -21,6 +21,20 @@ public class MPermissionsActivity extends AppCompatActivity {
     private final String TAG = "MPermissions";
     private int REQUEST_CODE_PERMISSION = 0x00099;
 
+
+    /**
+     * 请求权限
+     *
+     * @param permissions 请求的权限
+     */
+    public void requestPermission(String[] permissions) {
+        if (checkPermissions(permissions)) {
+        } else {
+            List<String> needPermissions = getDeniedPermissions(permissions);
+            ActivityCompat.requestPermissions(this, needPermissions.toArray(new String[needPermissions.size()]), REQUEST_CODE_PERMISSION);
+        }
+    }
+
     /**
      * 请求权限
      *
@@ -45,7 +59,7 @@ public class MPermissionsActivity extends AppCompatActivity {
      */
     private boolean checkPermissions(String[] permissions) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
+            return false;
         }
 
         for (String permission : permissions) {
@@ -86,6 +100,7 @@ public class MPermissionsActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        Log.e(TAG,requestCode+"-->"+grantResults);
         if (requestCode == REQUEST_CODE_PERMISSION) {
             if (verifyPermissions(grantResults)) {
                 permissionSuccess(REQUEST_CODE_PERMISSION);
